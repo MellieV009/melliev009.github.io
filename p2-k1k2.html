@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <title>P2-K1/K2</title>
+</head>
+
+<body>
+  <main>
+    <h1>Informatie</h1>
+    <p>Voordat de stage begint krijg je eerst 2 Profielexamens, namelijk <b>P2-K1: Ontwikkelt digitale
+        informatievoorzieningen</b> en
+      <b>P2-K2: Controleert de security</b>.
+    </p>
+    <b>Let op: De informatie op deze pagina komt van leraren en/of open source data.</b>
+    <p>
+      <a href="https://seirdotexe.github.io/" class="text-decoration-none">
+        <svg xmlns="http://w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z">
+          </path>
+        </svg>
+        Terug naar home</a>
+    </p>
+    <hr>
+
+    <h1>Taken P2-K1</h1>
+    <p style="width: 50rem;">In de kern draait het examen om het schrijven van een script dat systeemdata verwerkt in
+      platte bestanden. Dit is
+      op
+      basis van een ontwerp wat is afgestemd op een klantbehoefte. De systeemdata wordt ook geplaatst in een database
+      waar vraagstellingen en beheeractiviteiten op zullen plaatsvinden</p>
+    <h3>Ontwerpt een informatievoorziening <mark>WP1</mark></h3>
+    <p style="width: 50rem;">Hier moet je Visio gaan gebruiken om vervolgens een stroomdiagram te maken. Ik verwacht dat
+      je met Visio een
+      script moet uitwerken.</p>
+    <h3>Automatiseert processen <mark>WP2</mark></h3>
+    <p style="width: 50rem;">Hier moet je met Python een script aanvullen en gebruiken om iets te automatiseren. Volgens
+      open source data moet
+      je gegevens tussen twee tekstbestanden met elkaar vergelijken. Vervolgens moet je de verschillen tussen de twee
+      tekstbestanden op het scherm printen. Je moet dus <b>lijn voor lijn</b> vergelijken!</p>
+    <h3>Beheert databases <mark>WP3</mark></h3>
+    <p style="width: 50rem;">Hier moet je met een database tool genaamd MySQL Workbench een database benaderen en
+      queries schrijven. Volgens
+      open source data moet je op de MySQL server gegevens opnemen, waar vraagstellingen en enkele beheeractiviteiten op
+      zullen plaatsvinden.</p>
+
+    <h2>Scripts</h2>
+    <button id="spul_scripts" onclick="hider('scripts')">Toon spul</button>
+    <div id="scripts" style="display: none;">
+      <pre><code class="language-python">ouder = input("is je hond ouder dan 2? ")
+
+if ouder == "ja":
+  hondenjaar_ = int(input("hoe oud is je hond? "))
+  mensenjaar = hondenjaar_ * 4 + 13
+  print("je hond is ", mensenjaar, "mensenjaren oud")
+else:
+  hondenjaar = int(input("hoe oud is je hond? "))
+  mensenjaar = hondenjaar * 10.5
+  print("je hond is " , mensenjaar , "mensenjaren oud")
+
+cijfer = float(input("welk cijfer geef je de student? "))
+
+if cijfer >= 0 and cijfer <= 3.9:
+  print("slecht cijfer man")
+elif cijfer >= 4 and cijfer <= 5.4:
+  print("onvoldoende")
+elif cijfer >= 5.5 and cijfer <= 6.9:
+  print("voldoende man")
+elif cijfer >= 7 and cijfer <= 9.9:
+  print("goed")
+elif cijfer == 10:
+  print("HODIH 10 GAST")</code></pre>
+    </div>
+
+    <h2>Hulpmiddelen</h2>
+    <ul>
+      <li>
+        <a href="https://lucidchart.com/pages/nl/wat-is-een-stroomdiagram">
+          Uitleg stroomdiagram</a>
+        met
+        <a href="https://www.lucidchart.com/pages/nl/symbolen-en-notatie-voor-stroomdiagrammen">
+          uitleg symbolen</a>
+        en
+        <a
+          href="https://support.microsoft.com/en-us/office/align-and-position-shapes-in-a-diagram-a523b157-c8ff-47b0-9210-2f292de8ba20">
+          goede formatting
+        </a>
+      </li>
+      <li><a href="https://www.pythonforbeginners.com/basics/how-to-compare-two-files-in-python-line-by-line">Python
+          lijn voor lijn lezen en vergelijken</a></li>
+      <li><a href="https://w3schools.com/python/default.asp">Python info</a></li>
+      <li><a href="https://w3schools.com/sql/default.asp">SQL info</a></li>
+      <li><a
+          href="https://medium.com/@tushar0618/how-to-create-er-diagram-of-a-database-in-mysql-workbench-209fbf63fd03">MySQL
+          Workbench EER diagram maken</a></li>
+      <li><a href="https://github.com/ChickenLeg05/Northwind-Database">Northwind SQL antwoorden</a></li>
+    </ul>
+
+    <hr>
+    <h1>Taken P2-K2</h1>
+    <p style="width: 50rem;">De kerntaak heeft twee werkprocessen waarin wordt verwacht dat de kandidaat in staat is om
+      kwetsbaarheden te
+      identificeren binnen een organisatie en/of informatievoorziening, én de kandidaat moet aanvallen/incidenten kunnen
+      afwenden.</p>
+    <h3>Geeft security advies en verbetert de security <mark>WP1</mark></h3>
+    <p style="width: 50rem;">Je moet iets vinden wat fout is en je moet advies geven. Je gaat dus tools gebruiken om
+      dingen op te sporen, en
+      een analyse maken. Waarschijnlijk moet je hier specifieke Sysinternals programma's gaan gebruiken, zoals Procexp,
+      Procmon, Autoruns en TCPView. Volgens open source data draait hier een platform van drie VM's, een
+      domain-controller, een SQL-server en een werkstation. In het eerste gedeelte van het examen dient de omgeving
+      uitgebreid geanalyseerd te worden. Verder krijg je ook dingen aangeboden. Zo zijn er een paar korte interviews
+      gehouden door een security-collega met enkele werknemers van het bedrijf. De interviews zijn genotuleerd en de
+      kandidaat wordt in de gelegenheid gesteld om die interviews te bestuderen. Uit deze interviews vallen een aantal
+      zaken op die er op duiden dat er kwetsbaarheden zijn binnen de IT-omgeving en/of het gebruik hiervan. Op de VM
+      wordt een toolbox ter beschikking gesteld met verschillende security-tools waarmee de IT-omgeving op een aantal
+      punten getest kunnen worden.</p>
+    <h3>Reageert op security incidenten <mark>WP2</mark></h3>
+    <p style="width: 50rem;">Volgens open source data dient een gerapporteerd incident geanalyseerd te worden én er
+      wordt een lijst met
+      gedetecteerde zwakheden op de SQL-server aangereikt met het verzoek om de server op die punten te beveiligen. Het
+      vermoeden wordt uitgesproken dat er vertrouwelijke gegevens uit een database zijn gelekt, jij moet dat gaan
+      onderzoeken. Met behulp van een sjabloon kan de kandidaat de bevindingen onderverdelen per asset. De kandidaat
+      selecteert uit een organogram de juiste personen die hiervan op de hoogte moeten worden gesteld en stelt daarvoor
+      e-mails op. De kandidaat krijgt een document aangereikt met een aantal incidenten (gevonden zwakheden) op de
+      SQL-server. Het gaat dan bijvoorbeeld om verdachte software, onverwachte externe toegang en zwakheden in het
+      accountbeheer. Deze zwakheden moeten beveiligd worden. Hiervoor dienen aanpassingen gedaan te worden op de VM.
+      Alle verrichte aanpassingen dienen gedocumenteerd te worden.</p>
+
+    <h2>Foute dingen</h2>
+    <button id="spul_fout" onclick="hider('fout')">Toon spul</button>
+    <div id="fout" style="display: none;">
+      <ul>
+        <li style="color: red;">Er is data uit de database gehaald</li>
+        <dd style="color: green;"><b>FIX:</b> Controleer dit in de <a
+            href="https://dev.mysql.com/doc/refman/8.0/en/query-log.html">General Query Log</a> (zoek iets met LIMIT
+          1000)</dd>
+
+        <li style="color: red;">Windows Securtiy firewall is uit</li>
+        <dd style="color: green;"><b>FIX:</b> Aanzetten</dd>
+
+        <li style="color: red;">Windows Defender is uit</li>
+        <dd style="color: green;"><b>FIX:</b> Aanzetten</dd>
+
+        <li style="color: red;">In de downloads staat NicePics.txt en dit is een <a
+            href="https://www.eicar.org/download-anti-malware-testfile/">Eicar</a> file</li>
+
+        <li style="color: red;">In de downloads staat PortQry.exe en dit is een raar programma om iets met RPC te doen
+          fzo idk</li>
+
+        <li style="color: red;">PC is geïnfecteerd</li>
+        <dd style="color: green; width: 50rem;"><b>FIX:</b> Het virus is NetCat Remote Tool (nc.exe). Dit staat in een
+          hidden folder
+          in C:\LP. Dit mapje verwijderen dan is het virus weg, er is een exclusion in Defender voor dit virus in
+          Regedit! Gebruik hier vanuit Sysinternals
+          de programma's Process Explorer om het
+          virus te zien, en Autoruns om het virus uit te zetten bij opstarten. Gebruik <a
+            href="https://virustotal.com/">VirusTotal</a> om het virus te analyseren</dd>
+
+        <li style="color: red;">Virus op de server verwijderen</li>
+        <dd style="color: green;"><b>FIX:</b> Zet antivirus aan en scan, eventueel gebruik Malwarebytes/HitmanPro</dd>
+
+        <li style="color: red;">UltraVNC staat op de server geïnstalleerd</li>
+        <dd style="color: green;"><b>FIX:</b> Uninstallen</dd>
+
+        <li style="color: red;">MySQL Workbench root account wachtwoord is root</li>
+        <dd style="color: green;"><b>FIX:</b> Wachtwoord aanpassen</dd>
+
+        <li style="color: red;">Wachtwoorden van gebruikers zijn te makkelijk en gebruiken geen encryptie</li>
+        <dd style="color:green"><b>Fix:</b> Gebruik <a
+            href="https://dev.mysql.com/doc/mysql-installer/en/server-authentication-method.html">Strong Password
+            Encryption</a> om makkelijke wachtwoorden
+          te voorkomen
+          en
+          <a
+            href="https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password">caching_sha2_password</a>
+          om veilig wachtwoorden te encrypten
+        </dd>
+      </ul>
+    </div>
+
+    <h2>Rayen WAMP opdracht antwoorden</h2>
+    <button id="spul_opdracht" onclick="hider('opdracht')">Toon spul</button>
+    <div id="opdracht" style="display: none;">
+      <img src="https://cdn.discordapp.com/attachments/803232120117264394/1069611014133391390/image.png">
+    </div>
+
+    <h2>Port en CVEDetails uitleg</h2>
+    <button id="spul_poort" onclick="hider('poort')">Toon spul</button>
+    <div id="poort" style="display: none;">
+      <p style="width: 30rem; color: red;"><b>Let op: Niet iedere poort is gelijk een virus/slecht beveiligd, en niet
+          iedere service die op een poort loopt is
+          gelijk kwetsbaar. Het is pas kwetsbaar als er een exploit beschikbaar is die onder de juiste versie valt,
+          zodat
+          het product dus affected is (gebruik <a href="https://www.cvedetails.com/">CVEDetails</a>).
+          Poorten met als service HTTP kun je bezoeken in je browser. Sommige poorten staan nou eenmaal open, zoals SSH,
+          FTP, HTTP etc. In kleine woorden; trek niet snel een
+          oordeel en verzamel info!</b>
+      </p>
+
+      <img src="https://cdn.discordapp.com/attachments/803232120117264394/1070008657116405870/image.png">
+      <img src="https://cdn.discordapp.com/attachments/803232120117264394/1070008797243920464/image.png">
+    </div>
+
+    <h2>NMAP uitleg</h2>
+    <button id="spul_nmap" onclick="hider('nmap')">Toon spul</button>
+    <div id="nmap" style="display: none;">
+      <img src="https://cdn.discordapp.com/attachments/803232120117264394/1070044247018979458/image.png">
+      <img src="https://cdn.discordapp.com/attachments/803232120117264394/1069980404536328262/image.png">
+      <img src="https://cdn.discordapp.com/attachments/803232120117264394/1069980863934251078/image.png">
+      <img src="https://cdn.discordapp.com/attachments/803232120117264394/1069983060201844736/image.png">
+      <img src="https://cdn.discordapp.com/attachments/803232120117264394/1069983357598961725/image.png">
+    </div>
+
+    <h2>Risicomatrix voorbeeld</h2>
+    <button id="spul_risicomatrix" onclick="hider('risicomatrix')">Toon spul</button>
+    <div id="risicomatrix" style="display: none;">
+      <img src="https://cdn.discordapp.com/attachments/1069982649952768020/1070006073387393075/image.png">
+    </div>
+
+    <h2>Hulpmiddelen</h2>
+    <ul>
+      <li>
+        <a
+          href="https://klimaatadaptatienederland.nl/kennisdossiers/vitale-kwetsbare-functies/bescherming/risicos/methodes-risico-afwegen-beslissingen-nemen/risicomatrix/">
+          Risicomatrix</a>
+      </li>
+      <li><a href="https://highon.coffee/blog/nmap-cheat-sheet/">NMAP cheat sheet</a></li>
+      <li><a href="https://infosecmatter.com/nmap-nse-library/">NMAP scripting library</a></li>
+      <li>
+        <a href="https://autoriteitpersoonsgegevens.nl/nl/onderwerpen/avg-europese-privacywetgeving">
+          Algemene informatie AVG
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://stichtingpraktijkleren.nl/leerling/it-systems-and-devices/leermiddelen/expert-it-systems-devices/leermiddelen-op-onderwerp/security-privacy/cyber-security-specialist/">
+          Praktijkleren resources
+        </a>
+      </li>
+    </ul>
+
+  </main>
+
+  <script>
+    function hider(element_name) {
+      const button = document.getElementById(`spul_${element_name}`);
+      button.textContent === "Toon spul" ? button.textContent = "Verberg spul" : button.textContent = "Toon spul";
+
+      const element = document.getElementById(element_name);
+      element.style.display === "none" ? element.style.display = "block" : element.style.display = "none";
+    }
+  </script>
+
+</body>
