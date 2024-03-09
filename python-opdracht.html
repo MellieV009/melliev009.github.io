@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>CSV inlezen en printen</h1>
     <code>
 #Onderstaande code opent de 2 bestanden.
 <br />
@@ -30,6 +31,25 @@ from datetime import datetime
 tijd = datetime.now()
 <br />
 print(tijd)
+    </code>
+
+    <div style="height: 50px;"></div>
+
+    <h1>Scrikkeljaren</h1>
+    <code>
+#Oefenopdracht 2 Maakt een programma dat bepaalt of een bepaald jaar een schrikkeljaar is of niet
+<br />
+jaar = int(input("Welk jaar is het"))
+<br />
+#De onderstaande code kijkt of het jaar gedeeld kan worden door of 400; en niet door 100.
+<br />
+if (jaar % 4 == 0 and jaar % 100 != 0) or jaar % 400 == 0:
+<br />
+print("Dit is een schrikeljaar")  
+<br />
+else:
+<br />
+    print("Dit is geen schrikeljaar") 
     </code>
 </body>
 </html>
