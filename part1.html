@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <title>SRWE Practice PT Skills Assessment - Part 1</title>
+</head>
+
+<html>
+
+<body>
+  <main>
+    <h1>Informatie</h1>
+    <p>In deze opdracht moet je verschillende devices gaan configureren, en ook VLAN troubleshooten. Zo moet je dus
+      bijvoorbeeld een switch gaan configureren met VLANs en een router met trunking.</p>
+    <p>A corporation is planning to implement EtherChannel and a new VLAN design in order to make the network more
+      efficient. You have been asked to work on a design and prototype of the new network. You have created the logical
+      topology and now need to configure the devices in order to evaluate the design. You will configure VLANs and
+      access port VLAN membership on access layer switches. You will also configure EtherChannel and trunking. Finally,
+      you will configure a router and a Layer 3 switch to route between VLANs. Some addressing had already been
+      configured.</p>
+
+    <b>Let op: Er zijn meerdere versies van deze opdracht. Ik heb dit uitgewerkt op ID 211.</b>
+    <br>
+
+    <a href="https://itexamanswers.net/ccna-2-srwe-practice-pt-skills-assessment-ptsa-part-1-answers.html">SRWE Practice
+      PT Skills Assessment (PTSA) - Part 1 Answers</a>
+    <br>
+
+    <p>
+      <a href="https://seirdotexe.github.io/" class="text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z">
+          </path>
+        </svg>
+        Terug naar B1-K2 overzicht</a>
+    </p>
+    <hr>
+
+    <h1>Antwoorden</h1>
+    <h3>Router Edge-Router</h3>
+    <pre><code class="language-plaintext">enable
+conf t
+ip route 172.31.10.0 255.255.255.0 GigabitEthernet0/0/0
+ip route 172.31.20.0 255.255.255.0 GigabitEthernet0/0/0
+ip route 172.31.30.0 255.255.255.0 GigabitEthernet0/0/0
+ip route 172.31.99.0 255.255.255.240 GigabitEthernet0/0/0
+no ip domain lookup
+enable secret class
+line console 0
+password cisco
+login
+exit
+line vty 0 4
+password cisco
+login
+exit
+banner motd #Authorized Access Only!#
+hostname Edge-Router
+service password-encryption
+interface g0/0/0
+ip address 172.31.0.1 255.255.255.0
+no shutdown
+description "R1 G0/0/0"
+exit
+interface s0/1/0
+ip address 209.165.201.2 255.255.255.252
+no shutdown
+description "R1 S0/1/0"
+exit
+interface g0/0/1
+no shutdown
+interface g0/0/1.40
+description "Gateway for VLAN40"
+encapsulation dot1q 40
+ip address 172.31.40.1 255.255.255.0
+exit
+interface g0/0/1.50
+description "Gateway for VLAN50"
+encapsulation dot1q 50
+ip address 172.31.50.1 255.255.255.0
+exit
+interface g0/0/1.60
+description "Gateway for VLAN60"
+encapsulation dot1q 60
+ip address 172.31.60.1 255.255.255.0
+exit
+interface g0/0/1.99
+description "Gateway for VLAN99"
+encapsulation dot1q 99 native
+ip address 172.31.99.17 255.255.255.240
+end
+copy running-config startup-config</code></pre>
+    <hr>
+
+    <h3>Switch Sw-C</h3>
+    <pre><code class="language-plaintext">enable
+config t
+interface vlan 99
+ip address 172.31.99.18 255.255.255.240
+no shutdown
+exit
+ip default-gateway 172.31.99.17
+ip domain-name acad.pt
+crypto key generate rsa
+1024
+username admin privilege 15 secret C1sco123!
+enable secret C1sco123!
+line vty 0 15
+transport input ssh
+login local
+exit
+ip ssh version 2
+vlan 40
+name FAC
+exit
+interface vlan 40
+ip address 172.31.40.1 255.255.255.0
+description FAC
+exit
+vlan 50
+name FAB1
+exit
+interface vlan 50
+ip address 172.31.50.1 255.255.255.0
+description FAB1
+exit
+vlan 60
+name FAB2
+exit
+interface vlan 60
+ip address 172.31.60.1 255.255.255.0
+description FAB2
+exit
+vlan 99
+name ADMIN
+exit
+interface vlan 99
+ip address 172.31.99.18 255.255.255.240
+description ADMIN
+exit
+interface range f0/1-5
+switchport mode access
+switchport access vlan 40
+exit
+interface range f0/6-10
+switchport mode access
+switchport access vlan 50
+exit
+interface range f0/11-15
+switchport mode access
+switchport access vlan 60
+exit
+interface f0/24
+switchport mode access
+switchport access vlan 99
+exit
+interface g0/1
+switchport mode trunk
+switchport nonegotiate
+switchport trunk allowed vlan 40,50,60,99
+switchport trunk native vlan 99
+end
+copy running-config startup-config</code></pre>
+
+    <hr>
+
+    <h3>Switch L3-SW1</h3>
+    <pre><code class="language-plaintext">enable
+config t
+vlan 10
+name SALES
+interface vlan 10
+description SALES
+ip address 172.31.10.1 255.255.255.0
+exit
+vlan 20
+name ACCT
+interface vlan 20
+description ACCT
+ip address 172.31.20.1 255.255.255.0
+exit
+vlan 30
+name EXEC
+interface vlan 30
+description EXEC
+ip address 172.31.30.1 255.255.255.0
+exit
+vlan 99
+name ADMIN
+interface vlan 99
+description ADMIN
+ip address 172.31.99.2 255.255.255.240
+exit
+ip routing
+interface g1/1/1
+no switchport
+ip address 172.31.0.2 255.255.255.0
+exit
+interface range g1/0/1-2
+channel-group 1 mode active
+exit
+interface port-channel 1
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30
+exit
+interface range g1/0/3-4
+channel-group 2 mode active
+exit
+interface port-channel 2
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30
+end
+copy running-config startup-config</code></pre>
+
+    <hr>
+
+    <h3>Switch Sw-A</h3>
+    <pre><code class="language-plaintext">enable
+config terminal
+vlan 10
+name SALES
+interface vlan 10
+description SALES
+exit
+vlan 20
+name ACCT
+interface vlan 20
+description ACCT
+exit
+vlan 30
+name EXEC
+interface vlan 30
+description EXEC
+exit
+interface range f0/7-10
+switchport mode access
+switchport access vlan 10
+exit
+interface range f0/11-15
+switchport mode access
+switchport access vlan 20
+exit
+interface range f0/16-24
+switchport mode access
+switchport access vlan 30
+exit
+interface range g0/1-2
+channel-group 1 mode active
+exit
+interface port-channel 1
+switchport mode trunk
+switchport nonegotiate
+exit
+interface range f0/5-6
+channel-group 3 mode active
+exit
+interface port-channel 3
+switchport mode trunk
+switchport nonegotiate
+end
+copy running-config startup-config</code></pre>
+    <hr>
+
+    <h3>Switch Sw-B</h3>
+    <pre><code class="language-plaintext">enable
+config t
+vlan 10
+name SALES
+interface vlan 10
+description SALES
+exit
+vlan 20
+name ACCT
+interface vlan 20
+description ACCT
+exit
+vlan 30
+name EXEC
+interface vlan 30
+description EXEC
+exit
+interface range f0/7-10
+switchport mode access
+switchport access vlan 10
+exit
+interface range f0/11-15
+switchport mode access
+switchport access vlan 20
+exit
+interface range f0/16-24
+switchport mode access
+switchport access vlan 30
+exit
+interface range g0/1-2
+channel-group 2 mode active
+exit
+interface port-channel 2
+switchport mode trunk
+switchport nonegotiate
+exit
+interface range f0/5-6
+channel-group 3 mode active
+exit
+interface port-channel 3
+switchport mode trunk
+switchport nonegotiate
+end
+copy running-config startup-config</code></pre>
+  </main>
+</body>
+
+</html>

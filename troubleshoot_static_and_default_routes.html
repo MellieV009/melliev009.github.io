@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <title>Troubleshoot Static and Default Routes</title>
+</head>
+
+<html>
+
+<body>
+  <main>
+    <h1>Informatie</h1>
+    <p>In deze opdracht moet je gaan onderzoeken waarom static en default routes niet werken. Dit komt wellicht in het
+      examen.</p>
+
+    <a href="https://infraexam.com/16-3-1-packet-tracer-troubleshoot-static-and-default-routes-answers/">16.3.1 Lab</a>
+    <br>
+
+    <p>
+      <a href="https://seirdotexe.github.io/" class="text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z">
+          </path>
+        </svg>
+        Terug naar B1-K2 overzicht</a>
+    </p>
+    <hr>
+
+    <h1>Problemen en fixes</h1>
+
+    <p><strong>IPv4 Default route next hop interface address is incorrect.</strong></p>
+    <ul>
+      <li><strong><span style="color:red">Change next hop address to 172.31.1.193</span></strong></li>
+    </ul>
+
+    <p><strong>IPv6 route to LAN 1 has the wrong network address for the destination network.</strong></p>
+    <ul>
+      <li><strong><span style="color:red">Change destination address from 2001:DB6:1::/64 to
+            2001:DB8:1::/64</span></strong></li>
+    </ul>
+
+    <p><strong>The next hop addresses in the two IPv4 routes are reversed.</strong></p>
+    <ul>
+      <li><strong><span style="color:red">Change the statements to "ip route 172.31.1.0 255.255.255.128 172.31.1.194"
+            and "ip route 172.31.1.128 255.255.255.192 172.31.1.198"</span></strong></li>
+    </ul>
+
+    <p><strong>The IPv6 route to LAN 1 is missing.</strong></p>
+    <ul>
+      <li><strong><span style="color:red">Configure a directly connected static route to 2001:DB8:1::/64</span></strong>
+      </li>
+    </ul>
+
+    <p><strong>The IPv4 route to LAN 1 has the wrong mask for the network.</strong></p>
+    <ul>
+      <li><strong><span style="color:red">Change the mask to 255.255.255.128</span></strong></li>
+    </ul>
+
+    <hr>
+
+    <h1>Antwoorden</h1>
+    <h3>Router R1</h3>
+    <pre><code class="language-plaintext">enable
+conf t
+no ip route 0.0.0.0 0.0.0.0 172.31.1.195
+ip route 0.0.0.0 0.0.0.0 172.16.1.193
+end</code></pre>
+    <hr>
+
+    <h3>Router R2</h3>
+    <pre><code class="language-plaintext">enable
+conf t
+no ip route 172.31.1.0 255.255.255.128 172.31.1.198
+no ip route 172.31.1.128 255.255.255.192 172.31.1.194
+ip route 172.31.1.0 255.255.255.128 172.31.1.194
+ip route 172.31.1.128 255.255.255.192 172.31.1.198
+no ipv6 route 2001:DB6:1::/64 2001:DB8:3::194
+ipv6 route 2001:DB8:1::/64 2001:DB8:2::194
+end</code></pre>
+    <hr>
+
+    <h3>Router R3</h3>
+    <pre><code class="language-plaintext">enable
+conf t
+no ip route 172.31.1.0 255.255.255.240 Serial0/0/1
+ip route 172.31.1.0 255.255.255.128 Serial0/0/1
+ipv6 route 2001:DB8:1::/64 Serial0/0/1
+end</code></pre>
+    <hr>
+  </main>
+</body>
+
+</html>

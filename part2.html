@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <title>SRWE Practice PT Skills Assessment - Part 2</title>
+</head>
+
+<html>
+
+<body>
+  <main>
+    <h1>Informatie</h1>
+    <p>Cisco Demo LLC. is reworking their network. You have been asked to prototype the network in Packet Tracer for
+      evaluation by senior network staff.</p>
+
+    <b>Let op: Er zijn meerdere versies van deze opdracht. Ik heb dit uitgewerkt op ID 2.</b>
+    <br>
+
+    <a href="https://itexamanswers.net/ccna-2-srwe-practice-pt-skills-assessment-ptsa-part-2-answers.html">SRWE Practice
+      PT Skills Assessment (PTSA) - Part 2 Answers</a>
+    <br>
+
+    <p>
+      <a href="https://seirdotexe.github.io/" class="text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z">
+          </path>
+        </svg>
+        Terug naar B1-K2 overzicht</a>
+    </p>
+    <hr>
+
+    <h1>Antwoorden</h1>
+    <h3>S1-1 Switch (or SW-1/Sw-A)</h3>
+    <pre><code class="language-plaintext">enable
+config t
+vlan 10
+name users
+vlan 999
+name unused
+exit
+interface range f0/1-5, g0/1
+switchport mode access
+switchport access vlan 10
+interface range f0/1-5
+switchport port-security
+switchport port-security maximum 4
+switchport port-security violation restrict
+switchport port-security aging time 10
+switchport port-security mac-address sticky
+exit
+interface f0/1
+switchport port-security mac-address 00D0.D3DC.2825
+exit
+ip dhcp snooping
+ip dhcp snooping vlan 10,999
+interface range f0/1-5, g0/1
+ip dhcp snooping limit rate 5
+exit
+interface g0/1
+ip dhcp snooping trust
+exit
+ip arp inspection vlan 10,999
+interface g0/1
+ip arp inspection trust
+exit
+interface range f0/1-5
+spanning-tree portfast
+spanning-tree bpduguard enable
+interface range f0/6-24, g0/2
+switchport mode access
+switchport access vlan 999
+shutdown</code></pre>
+
+    <hr>
+    <h3>Branch-101 Router (or RTR-Branch/R-B-10)</h3>
+    <pre><code class="language-plaintext">enable
+config t
+interface g0/0/0.10
+description WLAN users
+encapsulation dot1q 10
+ip address 192.168.10.1 255.255.255.0
+exit
+ip dhcp excluded-address 192.168.10.1
+ip dhcp excluded-address 192.168.10.254
+ip dhcp pool WLAN-hosts
+network 192.168.10.0 255.255.255.0
+default-router 192.168.10.1
+dns-server 198.51.100.163
+exit
+interface g0/0/1
+ip address dhcp
+end
+exit</code></pre>
+
+    <hr>
+    <h3>Central Router (or RTR-HQ/R-1-A)</h3>
+    <pre><code class="language-plaintext">enable
+conf t
+ip route 0.0.0.0 0.0.0.0 g0/0/2
+ip route 0.0.0.0 0.0.0.0 s0/1/0 10
+ip route 192.168.10.0 255.255.255.0 g0/0/2
+ip route 192.168.10.0 255.255.255.0 s0/1/0 10
+ip route 192.168.3.122 255.255.255.255 s0/1/1
+ipv6 unicast-routing
+ipv6 route ::/0 2001:DB8:ACAD:A::2
+ipv6 route ::/0 2001:db8:acad:b::2 10
+ipv6 route 2001:db8:acad:3::122/128 2001:db8:acad:d::2</code></pre>
+
+    <hr>
+    <h3>Branch-101 Router (or RTR-Branch/R-B-10)</h3>
+    <pre><code class="language-plaintext">enable
+configure terminal
+ip route 0.0.0.0 0.0.0.0 g0/0/1
+ip route 0.0.0.0 0.0.0.0 s0/1/0 10
+ipv6 unicast-routing
+ipv6 route ::/0 2001:DB8:ACAD:C::1
+ipv6 route ::/0 2001:DB8:ACAD:B::1 10</code></pre>
+  </main>
+</body>
+
+</html>

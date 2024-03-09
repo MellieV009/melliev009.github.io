@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <title>Troubleshoot Inter-VLAN Routing</title>
+</head>
+
+<html>
+
+<body>
+  <main>
+    <h1>Informatie</h1>
+    <p>
+      In deze opdracht moet je gaan onderzoeken waarom de inter-VLAN routing niet werkt. Er zijn dus wat fouten gemaakt
+      in de configuraties en die moet jij oplossen. Dit zal waarschijnlijk in het examen komen.
+    </p>
+
+    <a href="https://infraexam.com/4-4-9-lab-troubleshoot-inter-vlan-routing-answers/">4.4.9 Lab</a>
+    <br>
+    <a href="https://infraexam.com/4-4-8-packet-tracer-troubleshoot-inter-vlan-routing-answers/">4.4.8 Lab</a>
+
+    <p>
+      <a href="https://seirdotexe.github.io/" class="text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z">
+          </path>
+        </svg>
+        Terug naar B1-K2 overzicht</a>
+    </p>
+    <hr>
+
+    <h1>Problemen en fixes</h1>
+
+    <p><strong>The G0/1 physical interface is up but G0/1.10 subinterface is administratively down.</strong></p>
+    <ul>
+      <li><strong><span style="color:red">Implement the no shutdown command to enable the G0/1.10
+            subinterface.</span></strong></li>
+    </ul>
+
+    <p><strong>PC3 is configured with the wrong default gateway address.</strong></p>
+    <ul>
+      <li><strong><span style="color:red">Change the default gateway on PC3 from 172.17.10.1 to
+            172.17.30.1</span></strong></li>
+    </ul>
+
+    <p><strong>Interface G0/1 on S1 is configured as an access port instead of trunk port.</strong></p>
+    <ul>
+      <li><strong><span style="color:red">Use the command "switchport mode trunk" to change the interface from access
+            mode
+            to trunk mode.</span></strong></li>
+    </ul>
+
+    <p><strong>Subinterface VLAN assignments are switched on R1. The configured assignments do not match the ones shown
+        in the Addressing Table.</strong></p>
+    <ul>
+      <li><strong><span style="color:red">Issue the "no encapsulation dot1q" command to remove the incorrect
+            configuration. Then configure the subinterfaces with the correct "encapsulation dot1q vlan_number" command.
+            Reenter the correct IP address information.</span></strong></li>
+    </ul>
+
+    <hr>
+
+    <h1>Antwoorden</h1>
+    <h3>Router R1</h3>
+    <pre><code class="language-plaintext">enable
+configure terminal
+hostname R1
+enable secret class
+line con 0
+password cisco
+login
+logging synch
+line vty 0 4
+password cisco
+login
+service password-encryption
+banner motd $ Authorized Users Only! $
+interface g0/0/1
+no shut
+interface g0/0/1.3
+encap dot1q 3
+ip add 10.3.0.1 255.255.255.0
+interface g0/0/1.4
+encap dot1q 4 native
+ip address 10.4.0.1 255.255.255.0
+interface g0/0/1.8
+! encap dot1q 8 native
+encap dot1q 8
+interface g0/0/1.13
+encap dot1q 13
+ip address 10.13.0.1 255.255.255.0
+end</code></pre>
+    <hr>
+
+    <h3>Switch S1</h3>
+    <pre><code class="language-plaintext">enable
+config terminal
+hostname S1
+no ip domain-lookup
+enable secret class
+line con 0
+password cisco
+login
+logging synch
+line vty 0 15
+password cisco
+login
+service password-encryption
+banner motd $ Authorized Users Only! $
+vlan 3
+name Management
+vlan 4
+name Operations
+vlan 7
+name ParkingLot
+vlan 8
+name Native
+vlan 13
+name Maintenance
+interface vlan 3
+ip address 10.3.0.11 255.255.255.0
+no shut
+exit
+ip default-gateway 10.3.0.1
+interface range f0/2-4, f0/7-24, G0/1-2
+switchport mode access
+switchport access vlan 7
+shutdown
+interface f0/1
+switchport mode trunk
+switchport trunk native vlan 8
+switchport trunk allowed vlan add 3
+switchport trunk allowed vlan 4,8,13
+no shutdown
+interface f0/6
+switchport mode access
+switchport access vlan 4
+no shutdown
+interface f0/5
+switchport mode access
+default interface fa0/5
+switchport mode trunk
+switchport trunk native vlan 8
+switchport trunk allowed vlan 3,4,8,13
+switchport access vlan 3
+no shut
+end</code></pre>
+    <hr>
+
+    <h3>Switch S2</h3>
+    <pre><code class="language-plaintext">enable
+config terminal
+hostname S2
+no ip domain-lookup
+enable secret class
+line con 0
+password cisco
+login
+logging synch
+line vty 0 15
+password cisco
+login
+service password-encryption
+banner motd $ Authorized Users Only! $
+vlan 3
+name Management
+vlan 4
+name Operations
+vlan 7
+name ParkingLot
+vlan 8
+name Native
+vlan 13
+name Maintenance
+interface vlan 3
+ip address 10.3.0.12 255.255.255.0
+no shut
+interface range f0/2-17, f0/19-24, G0/1-2
+switchport mode access
+switchport access vlan 7
+shutdown
+interface f0/18
+switchport mode access
+switchport access vlan 13
+interface f0/1
+switchport mode trunk
+switchport trunk native vlan 8
+switchport trunk allowed vlan 4,8
+switchport trunk allowed vlan add 3,13
+ip default-gateway 10.3.0.1
+end</code></pre>
+  </main>
+</body>
+
+</html>
