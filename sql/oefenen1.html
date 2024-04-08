@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oefenen 1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+
+<body>
+    <h1>Opdracht 1: Volledige tabel inhoud tonen</h1>
+    <p>Met welke statement krijg je de volledige inhoudt te zien van de tabel “nwcustomers” in de database “Northwind”?</p>
+    <pre>
+        <code class="sql">
+use northwind;
+select * from nwcustomers;
+        </code>
+    </pre>
+    <img src="/data/img/sql-oefenen1-opdr1.png">
+
+    <hr />
+
+    <h1>Opdracht 2: Volledige tabel inhoud tonen</h1>
+    <p>Met welke statement krijg je de kollommen “ProductName”, “QuantityPerUnit” en “UnitPrice” te zien van de tabel “nwproducts” in de database “Northwind”?</p>
+    <pre>
+        <code class="sql">
+use northwind;
+select ProductName, QuantityPerUnit, UnitPrice from nwproducts;
+        </code>
+    </pre>
+    <img src="/data/img/sql-oefenen1-opdr2.png">
+    
+    <hr />
+    
+    <h1>Opdracht 3: Volledige tabel inhoud tonen</h1>
+    <p>Met welke statement krijg je de kollommen “OrderID”, “ProductID” en “UnitPrice” te zien waarvan de prijs hoger is dan $10,-. van de tabel “nworderdetails” in de database “Northwind”?</p>
+    <pre>
+        <code class="sql">
+use northwind; 
+select OrderID, ProductID, UnitPrice
+FROM nworderdetails
+WHERE UnitPrice &gt; 10;
+        </code>
+    </pre>
+    <img src="/data/img/sql-oefenen1-opdr3.png">
+</body>
+
+</html>

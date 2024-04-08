@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voorbereiding 4</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+
+<body>
+<pre>
+    <code class="python">
+names = ["Melvin", "Jay", "Rinus", "Koen", "Nico"]
+
+# Sorteer de lijst van namen
+names.sort()
+
+# Print de gesorteerde lijst van namen
+print("Gesorteerde lijst van namen:")
+for name in names:
+    print(name)
+
+# Voeg een naam toe aan de lijst
+new_name = input("Voer een naam in om toe te voegen aan de lijst: ")
+names.append(new_name)
+
+# Verwijder een naam uit de lijst
+del_name = input("Voer een naam in om te verwijderen uit de lijst: ")
+if del_name in names:
+    names.remove(del_name)
+
+# Sorteer de lijst van namen opnieuw
+names.sort()
+
+# Print de gewijzigde lijst van namen
+print("Gewijzigde lijst van namen:")
+for name in names:
+    print(name)        
+    </code>
+</pre>
+</body>
+
+</html>

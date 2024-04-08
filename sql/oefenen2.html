@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oefenen 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+
+<body>    
+    <h1>Opdracht 1: Toon klanten die niets gekocht hebben.</h1>
+    <p>Met welke statement krijg je alleen de contactnaam en bedrijfsnaam te zien van de tabel “nwcustomers” die niets in bestelling hebben?</p>
+    <pre>
+        <code class="sql">
+use northwind;
+SELECT contactname, companyname from nwcustomers
+where customerid not in (select CustomerID from nworders);
+        </code>
+    </pre>
+    <img src="/data/img/sql-oefenen2-opdr1.png">
+    
+    <hr />
+    
+    <h1>Opdracht 2: Toon producten die een lagere prijs hebben dan gemiddeld</h1>
+    <p>Met welke statement krijg je de kollommen “ProductName” en “UnitPrice” te zien van de tabel “nwproducts” met een pijs de lager ligt dan de gemiddelde prijs.</p>
+    <pre>
+        <code class="sql">
+use northwind;
+SELECT ProductName, UnitPrice
+FROM nwproducts
+WHERE UnitPrice &lt; (SELECT AVG(UnitPrice) FROM nwproducts);
+        </code>
+    </pre>
+    <img src="/data/img/sql-oefenen2-opdr2.png">
+</pre>
+</body>
+
+</html>

@@ -1,55 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Voorbereiding 1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </head>
+
 <body>
-    <h1>CSV inlezen en printen</h1>
-    <code>
+<pre>
+    <code class="python">
 #Onderstaande code opent de 2 bestanden.
-<br />
 fietsonderdelen = open("C:\\Users\\Melvin Verriet\\AppData\\Local\\Programs\\Python\\Python311\\Fiets BV\\Nijmegen\\Administratie\\fietsonderdelen.csv")
-<br />
 klanten = open("C:\\Users\\Melvin Verriet\\AppData\\Local\\Programs\\Python\\Python311\\Fiets BV\\Nijmegen\\Administratie\\klanten.csv")
-<br />
-<br />
+
 #Onderstaande code toont de inhoud van de 2 bestanden.
-<br />
 print(fietsonderdelen.read())
-<br />
 print(klanten.read())
-<br />
-<br />
+
 #In onderstaande code print ik de huidige datum en tijd
-<br />
 from datetime import datetime
-<br />
 #Onderstaande code laat de tijd op het scherm zien
-<br />
 tijd = datetime.now()
-<br />
 print(tijd)
     </code>
-
-    <div style="height: 50px;"></div>
-
-    <h1>Scrikkeljaren</h1>
-    <code>
-#Oefenopdracht 2 Maakt een programma dat bepaalt of een bepaald jaar een schrikkeljaar is of niet
-<br />
-jaar = int(input("Welk jaar is het"))
-<br />
-#De onderstaande code kijkt of het jaar gedeeld kan worden door of 400; en niet door 100.
-<br />
-if (jaar % 4 == 0 and jaar % 100 != 0) or jaar % 400 == 0:
-<br />
-print("Dit is een schrikeljaar")  
-<br />
-else:
-<br />
-    print("Dit is geen schrikeljaar") 
-    </code>
+</pre>
 </body>
+
 </html>
