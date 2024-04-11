@@ -18,48 +18,6 @@
 
 <body>
   <main>
-    <h2>Belangrijke commands voor examen B1-K2-W1/2:</h2>
-    <p><b>Dit aanzetten in PT:</b> 'Options-Preferences-show device name labels/always show port labels in logical
-      workspace'</p>
-    <pre>
-      <code>
-show lldp neighbors = laat andere apparaten in het netwerk zien.
-do  show ip int brief = laat overzicht zien van ip-plan.
-ip default-gateway … … … … = 
-no ip domain-lookup = zorgt ervoor dat foutieve zoekfunctie weggehaald wordt
-show running-config = laat zien wat momenteel in netwerk zichtbaar is.
-write mem (slaat configuratie op naar running-config)
-vtp domain DOMEINNAAM
-vtp mode CLIENT of SERVER
-show spanning-tree = Hiermee onderzoek je welke de root switch is. Dit moet je bij alle (3 of 4) relevante switches uitvoeren.
-spanning-tree vlan “VLAN_ID” priority 0
-interface vlan 1 
-interface range FastEthernet0/1, FastEthernet0/3 
-switchport mode trunk
-      </code>
-    </pre>
-    <h3>LET OP!</h3>
-    <ul>
-      <li>Opmerking staat bij specifieke VLAN = switchport mode access Switchport access VLAN NAAM (voorbeeld:
-        switchport mode vlan 40)</li>
-      <li>Accespoint nooit hardware eruit halen (bij oefenexamen)</li>
-      <li>GEBRUIK ALTIJD NO SHUTDOWN in een interface! Voorbeeld: <code>int fa0/1 no shutdown</code></li>
-    </ul>
-
-    <b>Tip: </b>
-    <ul>
-      <li>Herhalende commands kopieren naar kladblok, scheelt onnodig veel typewerk. Je hoeft dan alleen maar de namen
-        en IP-adressen te veranderen.</li>
-    </ul>
-
-    <h3>Werkproces 2:</h3>
-    <b>Testen:</b>
-    <ul>
-      <li>Voorbeeld: Ik gebruik bij deze test een PC, Command Prompt en een switch.</li>
-    </ul>
-
-    <hr>
-
     <h1>Informatie</h1>
     <p>In deze opdracht moet je gaan onderzoeken waarom static en default routes niet werken. Dit komt wellicht in het
       examen.</p>
