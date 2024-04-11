@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <title>Troubleshoot Static and Default Routes</title>
+</head>
+
+
+<html>
+
+    <body>
+        <h1>Belangrijke commands voor examen B1-K2-W1:</h1>
+        <ul>
+          <li>Dit aanzetten in PT: ‘Options-Preferences-show device name labels/always show port labels in logical workspace’</li>
+          <li>show lldp neighbors = laat andere apparaten in het netwerk zien.</li>
+          <li>do show ip int brief = laat overzicht zien van ip-plan.</li>
+          <li>ip default-gateway … … … … = </li>
+          <li>no ip domain-lookup = zorgt ervoor dat foutieve zoekfunctie weggehaald wordt</li>
+          <li>show running-config = laat zien wat momenteel in netwerk zichtbaar is.</li>
+          <li>Do write mem (slaat configuratie op naar running-config)</li>
+          <li>vtp domain DOMEINNAAM</li>
+          <li>vtp mode CLIENT of SERVER</li>
+          <li>show spanning-tree = Hiermee onderzoek je welke de root switch is. Dit moet je bij alle (3 of 4) relevante switches uitvoeren.</li>
+          <li>spanning-tree vlan “VLAN_ID” priority 0</li>
+          <li>interface vlan 1 <br>ip-address …..  …..<br>interface vlan 1 <br>no shutdown<br>trunk poorten op Core01_ARN configureren en alle VLANS doorlaten</li>
+          <li>interface range FastEthernet0/1, FastEthernet0/3 <br>switchport mode trunk</li>
+          <li>dhcp pools per vlan op de Core01_ARN aanmaken <br>ip dhcp pool vlan.. (zie documentatie)</li>
+          <li>Switch hostname = switch name zelf!</li>
+          <li>Switchport mode trunk</li>
+      </ul>
+      
+      <h2>LET OP!</h2>
+      <ul>
+        <li>Opmerking staat bij specifieke VLAN = switchport mode access <br>Switchport access VLAN NAAM (voorbeeld: switchport mode vlan 40)</li>
+        <li>Accespoint nooit hardware eruit halen (bij oefenexamen)</li>
+        <li>GEBRUIK ALTIJD NO SHUTDOWN in een interface! <br>Voorbeeld: int fa0/1 <br>no shutdown</li>
+    </ul>
+  
+    <h2>Tip: </h2>
+    <ul>
+      <li>-	Herhalende commands kopieren naar kladblok, scheelt onnodig veel typewerk. Je hoeft dan alleen maar de namen en IP-adressen te veranderen.</li>
+    </ul>
+
+    <img src="data/img//tools/image001.jpg" />
+    <img src="data/img//tools/image002.jpg" />
+    <img src="data/img//tools/image003.jpg" />
+    <img src="data/img//tools/image004.jpg" />
+
+    <h1>Belangrijke commands voor examen B1-K2-W2:</h1>
+    <ul>
+      <li>Ssh -l *username* *Ipaddress*</li>
+      <li>Password</li>
+      <li>Enable</li>
+      <li>Show CDP (Om te veriferen of CDP uit staat)</li>
+      <li>no cdp run (moet uitstaan voor LLDP)</li>
+      <li>LLDP run (om LLDP te starten)</li>
+      <li>Show cdp neighbors = laat zien om welke devices de buren zijn.</li>
+      <li>Show cdp neigbors detail = laat de IP-adressen zien.</li>
+      <li>Interface g2/1</li>
+      <li>No lldp transmit (om de SW_CORE alleen te laten ontvangen en niet verzenden naar Switch 1 voor security reasons)</li>
+      <li>Do show lldp Neighbors (hier krijg je een lijst te zien van apparaten die verbonden zijn met SW_CORE)</li>
+      <li>Show vlan brief</li>
+      <li>Show running-config</li>
+      <li>Show ip interface brief</li>
+      <li>show lldp neighbors detail</li>
+      <li>show tech-support (Shows device type)</li>
+      <li>arp -a (displays routing table)</li>
+      <li>Show ntp association</li>
+      <li>traceroute</li>
+    </ul>
+  
+    <img src="data/img//tools/image005.png" />
+    <img src="data/img//tools/image006.png" />
+
+    <h2>Verificatie en Testen</h2>
+    <ul>
+      <li>Goed documenteren - Voorbeeld: Ik gebruik bij deze test een PC, Command Prompt en een switch.</li>
+    </ul>
+
+    <img src="data/img//tools/image007.png" />
+    <img src="data/img//tools/image08.png" />
+    <img src="data/img//tools/image09.png" />
+
+    </body>
+</html>
