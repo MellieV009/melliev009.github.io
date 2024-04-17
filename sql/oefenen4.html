@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oefenen 4</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+
+<body>    
+    <pre>
+        <code class="sql">
+            USE poortwachter;
+            SELECT * FROM gescandedata
+
+            USE poortwachter;
+            SELECT Kenteken, Merk FROM GescandeData
+
+            SELECT Kenteken, Merk, Cilinderinhoud FROM rdw
+            WHERE Cilinderinhoud > 2000
+
+            SELECT Kenteken, Merk FROM GescandeData
+            WHERE Kenteken NOT IN (SELECT kenteken FROM rdw)
+
+            INSERT INTO GescandeData (Kenteken, Merk, handelsbenaming) VALUES ('1SZN01', 'Sazuki', 'Alto Scantest');
+
+            SELECT Kenteken, Merk
+            FROM rdw
+            WHERE cilinderinhoud > (SELECT AVG(cilinderinhoud) FROM rdw)
+        </code>
+        
+        <code class="sql">
+            SELECT * FROM TABLENAME
+        </code>
+    </pre>
+</body>
+
+</html>
